@@ -1,4 +1,4 @@
-package com.example.testproject;
+package com.example.aroundhub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
