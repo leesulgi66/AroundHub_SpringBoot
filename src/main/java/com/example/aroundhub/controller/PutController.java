@@ -20,10 +20,10 @@ public class PutController {
 
     // http://localhost:8080/api/v1/put-api/member
     @PutMapping(value = "/member")
-    public String postMember(@RequestBody Map<String, Object> postData) {
+    public String postMember(@RequestBody Map<String, Object> putData) {
         StringBuilder sb = new StringBuilder();
 
-        postData.entrySet().forEach(map -> {
+        putData.entrySet().forEach(map -> {
             sb.append(map.getKey() + " : " + map.getValue()+"\n");
         });
 
@@ -35,11 +35,11 @@ public class PutController {
     public String postMemberDto1(@RequestBody MemberDTO memberDTO) { return memberDTO.toString(); }
 
     // http://localhost:8080/api/v1/put-api/member2
-    @PutMapping(value = "/member1")
+    @PutMapping(value = "/member2")
     public MemberDTO postMemberDto2(@RequestBody MemberDTO memberDTO) { return memberDTO; }
 
     // http://localhost:8080/api/v1/put-api/member2
-    @PutMapping(value = "/member1")
+    @PutMapping(value = "/member3")
     public ResponseEntity<MemberDTO> postMemberDTO3 (@RequestBody MemberDTO memberDTO) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(memberDTO); }
 }
