@@ -43,10 +43,10 @@ public class ProductController {
     public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto) {    // @Valid 어노테이션으로 validation 활성화
 
         // Validation Code Example
-        if (productDto.getProductId().equals("") || productDto.getProductId().isEmpty()) {
-            LOGGER.error("[createProduct] failed Response :: productId is Empty");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
-        }
+//        if (productDto.getProductId().equals("") || productDto.getProductId().isEmpty()) {
+//            LOGGER.error("[createProduct] failed Response :: productId is Empty");
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
+//        }
 
         String productId = productDto.getProductId();
         String productName = productDto.getProductName();
