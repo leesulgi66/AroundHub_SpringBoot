@@ -39,7 +39,7 @@ public class HelloController {
         throw new Exception();
     }
 
-//    @ExceptionHandler(value = Exception.class)
+//    @ExceptionHandler(value = Exception.class)    // 전역처리 보다 컨트롤러 내의 예외처리가 우선순위가 높다.
 //    public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e) {
 //        HttpHeaders responseHeaders = new HttpHeaders();
 //        //responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
