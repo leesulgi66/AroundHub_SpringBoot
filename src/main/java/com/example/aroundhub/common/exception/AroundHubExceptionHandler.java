@@ -1,4 +1,4 @@
-package com.example.aroundhub.exception;
+package com.example.aroundhub.common.exception;
 
 import com.example.aroundhub.controller.ProductController;
 import org.slf4j.Logger;
