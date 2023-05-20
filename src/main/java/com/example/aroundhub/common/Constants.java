@@ -1,6 +1,6 @@
 package com.example.aroundhub.common;
 
-public class Constans {
+public class Constants {
 
     public enum ExceptionClass {
 
@@ -18,7 +18,7 @@ public class Constans {
 
         @Override
         public String toString() {
-            return getExcptionClass() + "Exception. ";
+            return getExcptionClass() + " Exception. ";
         }
     }
 }
