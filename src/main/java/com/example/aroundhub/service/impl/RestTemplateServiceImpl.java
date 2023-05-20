@@ -20,7 +20,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     @Override
     public String getAroundHub() {
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:9090")
+                .fromUriString("http://localhost:8080")
                 .path("/api/server/around-hub")
                 .encode()
                 .build()
@@ -39,7 +39,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     public String getName() {
 
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:9090")
+                .fromUriString("http://localhost:8080")
                 .path("/api/server/name")
                 .queryParam("name", "Flature")
                 .encode()
@@ -58,7 +58,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     @Override
     public String getName2() {
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:9090")
+                .fromUriString("http://localhost:8080")
                 .path("/api/server/path-variable/{name}")
                 .encode()
                 .build()
@@ -77,7 +77,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     @Override
     public ResponseEntity<MemberDTO> postDto() {
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:9090")
+                .fromUriString("http://localhost:8080")
                 .path("/api/server/member")
                 .queryParam("name", "Flature")
                 .queryParam("email", "jjj@jjj.com")
@@ -104,7 +104,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     @Override
     public ResponseEntity<MemberDTO> addHeader() {
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:9090")
+                .fromUriString("http://localhost:8080")
                 .path("/api/server/add-header")
                 .encode()
                 .build()
