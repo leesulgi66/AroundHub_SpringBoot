@@ -1,5 +1,7 @@
 package com.example.aroundhub.controller;
 
+import com.example.aroundhub.common.Constants;
+import com.example.aroundhub.common.exception.AroundHubException;
 import com.example.aroundhub.data.dto.ProductDto;
 import com.example.aroundhub.service.ProductService;
 import org.slf4j.Logger;
@@ -67,5 +69,10 @@ public class ProductController {
     @DeleteMapping(value = "/product/{productId}")
     public ProductDto deleteProduct(@PathVariable String productId) {
         return null;
+    }
+
+    @PostMapping(value = "/product/exception")
+    public void exceptionTest() throws AroundHubException {
+        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생하였습니다.");
     }
 }
