@@ -73,6 +73,7 @@ public class ProductController {
 
     @PostMapping(value = "/product/exception")
     public void exceptionTest() throws AroundHubException {
-        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생하였습니다.");
+//        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생하였습니다.");
+        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, "접근이 금지되었습니다."); // 에러 메시지 변경
     }
 }
