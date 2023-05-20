@@ -32,4 +32,18 @@ public class AroundHubExceptionHandler {
 
         return new ResponseEntity<>(map, responseHeaders, httpStatus);
     }
+
+    @ExceptionHandler(value = AroundHubException.class)
+    public ResponseEntity<Map<String, String>> ExceptionHandler(AroundHubException e) { //override
+        HttpHeaders responseHeaders = new HttpHeaders();
+
+        LOGGER.info("Advice 내 ExceptionHandler 호출");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("error type", e.getHttpStatusType());
+        map.put("code code", Integer.toString(e.getHttpStatusCode())); // Map<String, Object>로 설정하면 변환 작업이 필요없다.
+        map.put("message", e.getMessage());
+
+        return new ResponseEntity<>(map, responseHeaders, e.getHttpStatus());
+    }
 }
