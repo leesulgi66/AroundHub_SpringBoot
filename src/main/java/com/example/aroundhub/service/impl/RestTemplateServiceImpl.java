@@ -41,7 +41,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
         URI uri = UriComponentsBuilder
                 .fromUriString("http://localhost:8080")
                 .path("/api/server/name")
-                .queryParam("name", "Flature")
+                .queryParam("name", "sulgi")
                 .encode()
                 .build()
                 .toUri();
@@ -62,7 +62,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
                 .path("/api/server/path-variable/{name}")
                 .encode()
                 .build()
-                .expand("Flature") // 복수의 값을 넣어야할 경우 , 를 추가하여 구분
+                .expand("sulgi") // 복수의 값을 넣어야할 경우 , 를 추가하여 구분
                 .toUri();
 
         RestTemplate restTemplate = new RestTemplate();
@@ -79,7 +79,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
         URI uri = UriComponentsBuilder
                 .fromUriString("http://localhost:8080")
                 .path("/api/server/member")
-                .queryParam("name", "Flature")
+                .queryParam("name", "sulgi")
                 .queryParam("email", "jjj@jjj.com")
                 .queryParam("organization", "Around Hub Studio")
                 .encode()
@@ -87,7 +87,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
                 .toUri();
 
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setName("flature!!");
+        memberDTO.setName("sulgi!!");
         memberDTO.setEmail("aaa@aaa.com");
         memberDTO.setOrganization("Around Hub Studio!!");
 
@@ -111,7 +111,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
                 .toUri();
 
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setName("flature");
+        memberDTO.setName("sulgi");
         memberDTO.setEmail("jjj@jjj.com");
         memberDTO.setOrganization("Around Hub Studio");
 
