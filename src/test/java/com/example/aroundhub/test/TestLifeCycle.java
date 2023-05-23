@@ -1,4 +1,4 @@
-package com.example.testproject.test;
+package com.example.aroundhub.test;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
