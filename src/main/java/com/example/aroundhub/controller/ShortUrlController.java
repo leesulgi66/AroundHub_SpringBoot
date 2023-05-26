@@ -38,7 +38,7 @@ public class ShortUrlController {
 
         LOGGER.info("[generateShortUrl] perform API. CLIENT_ID : {}, CLIENT_SECRET : {}", CLIENT_ID, CLIENT_SECRET);
 
-        return shortUrlService.getShortUrl(CLIENT_ID, CLIENT_SECRET, originalUrl);
+        return shortUrlService.generateShortUrl(CLIENT_ID, CLIENT_SECRET, originalUrl);
     }
 
     @GetMapping()
