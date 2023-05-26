@@ -10,7 +10,7 @@ public interface ShortUrlService {
 
     ShortUrlResponseDto updateShortUrl(String clientId, String clientSecret, String originalUrl);
 
-    ShortUrlResponseDto deleteByshortUrl(String shortUrl);
+    ShortUrlResponseDto deleteByShortUrl(String shortUrl);
 
     ShortUrlResponseDto deleteByOriginalUrl(String originalUrl);
 
