@@ -107,9 +107,9 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         LOGGER.info("[requestShortUrl] client ID : ***, client Secret : ***, original URL : {}", originalUrl);
 
         URI uri = UriComponentsBuilder
-            .fromUriString("https://openapi.naver.com")
-            .path("/v1/util/shorturl")
-            .queryParam("url", originalUrl)
+            .fromUriString("https://openapi.naver.com") // 기본 uri
+            .path("/v1/util/shorturl")  // 세부 uri
+            .queryParam("url", originalUrl) // +param
             .encode()
             .build()
             .toUri();
