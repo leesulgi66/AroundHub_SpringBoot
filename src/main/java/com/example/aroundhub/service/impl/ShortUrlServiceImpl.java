@@ -126,7 +126,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         RestTemplate restTemplate = new RestTemplate();
 
         LOGGER.info("[requestShortUrl] request by restTemplate");
-        ResponseEntity<NaverUriDto> responseEntity = restTemplate.exchange(uri, HttpMethod.GET,
+        ResponseEntity<NaverUriDto> responseEntity = restTemplate.exchange("https://openapi.naver.com/v1/util/shorturl", HttpMethod.GET,
             entity, NaverUriDto.class);
 
         LOGGER.info("[requestShortUrl] request has been successfully complete.");
