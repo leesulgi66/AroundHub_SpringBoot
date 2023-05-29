@@ -1,12 +1,15 @@
 package com.example.aroundhub.controller;
 
 
+import com.example.aroundhub.data.dto.ProductDto;
 import com.example.aroundhub.data.dto.ShortUrlResponseDto;
 import com.example.aroundhub.service.ShortUrlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +55,13 @@ public class ShortUrlController {
     public ShortUrlResponseDto updateshortUrl(String originalUrl) { return null; }
 
     @DeleteMapping("/")
-    public ShortUrlResponseDto deleteShortUrl(String url) { return null; }
+    public ResponseEntity<String> deleteShortUrl(String url) {
+        try{
+            shortUrlService.deleteShortUrl(url);
+        }catch(RuntimeException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
+    }
 }
