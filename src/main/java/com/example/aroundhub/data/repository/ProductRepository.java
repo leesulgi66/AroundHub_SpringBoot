@@ -47,4 +47,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
 
     // (Is)GreaterThan, (Is)LessThan, (Is)Between
     List<ProductEntity> findByProductPriceGreaterThan(Integer price);
+
+    // (Is)Like, (Is)Containing, (Is)StartingWith, (Is)EndingWith
+    List<ProductEntity> findByNameContaining(String name);
 }
