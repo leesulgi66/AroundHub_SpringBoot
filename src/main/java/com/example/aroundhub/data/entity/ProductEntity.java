@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString   // 직접적인 사용은 아니지만, test 환경에서 Entity 값을 확인하기 위함
 @Table(name = "product")
 public class ProductEntity extends BaseEntity{
 
