@@ -13,14 +13,14 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     List<ProductEntity> queryByProductName(String name);
 
     //존재 유무
-    boolean existByProductName(String name);
+    boolean existsByProductName(String name);
 
     // 쿼리 결과 개수
     long countByProductName(String name);
 
     // 삭제
     void deleteByProductId(String id);
-    long remeveByProductId(String id);
+    long removeByProductId(String id);
 
     // 값 개수 제한
     List<ProductEntity> findFirstByProductName(String name);
@@ -39,7 +39,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     List<ProductEntity> findByProductIdIsNot(String id);
 
     // (Is)Null, (Is)NotNull
-    List<ProductEntity> findByProducStockIsNull();
+    List<ProductEntity> findByProductStockIsNull();
     List<ProductEntity> findByProductStockIsNotNull();
 
     // And, Or
@@ -49,5 +49,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     List<ProductEntity> findByProductPriceGreaterThan(Integer price);
 
     // (Is)Like, (Is)Containing, (Is)StartingWith, (Is)EndingWith
-    List<ProductEntity> findByNameContaining(String name);
+    List<ProductEntity> findByProductNameContaining(String name);
 }
