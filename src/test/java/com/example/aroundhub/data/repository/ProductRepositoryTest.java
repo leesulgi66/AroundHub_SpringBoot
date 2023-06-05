@@ -29,7 +29,7 @@ public class ProductRepositoryTest {
     }
 
     private ProductEntity getProduct(String id, int nameNumber, int price, int stock) {
-        return new ProductEntity(id, "상품" + nameNumber, price, stock);
+        return new ProductEntity(id, "Product" + nameNumber, price, stock);
     }
 
     @Test
@@ -41,18 +41,32 @@ public class ProductRepositoryTest {
         }
         System.out.println("====↑↑ Test Data ↑↑====");
 
-        List<ProductEntity> foundEntities = productRepository.findByProductName("상품4");
+        List<ProductEntity> foundEntities = productRepository.findByProductName("Product4");
 
         for(ProductEntity productEntity : foundEntities) {
             System.out.println(productEntity.toString());
         }
 
-        List<ProductEntity> queryEntities = productRepository.queryByProductName("상품4");
+        List<ProductEntity> queryEntities = productRepository.queryByProductName("Product4");
 
         for(ProductEntity productEntity : queryEntities) {
             System.out.println(productEntity.toString());
         }
 
     }
+
+    @Test
+    void existTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.existsByProductName("Product4"));
+    }
+
+
 
 }
