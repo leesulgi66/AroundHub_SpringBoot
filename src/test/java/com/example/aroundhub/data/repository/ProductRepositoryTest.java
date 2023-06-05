@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
+
 @SpringBootTest
 public class ProductRepositoryTest {
 
@@ -77,6 +79,17 @@ public class ProductRepositoryTest {
         System.out.println("====↑↑ Test Data ↑↑====");
 
         System.out.println(productRepository.countByProductName("Product4"));
+    }
+
+    @Test
+    @Transactional
+    void deleteTest() {
+        System.out.println("before : "+productRepository.count());
+
+        productRepository.deleteByProductId("1");
+        productRepository.deleteByProductId("9");
+
+        System.out.println("After : "+productRepository.count());
     }
 
 }
