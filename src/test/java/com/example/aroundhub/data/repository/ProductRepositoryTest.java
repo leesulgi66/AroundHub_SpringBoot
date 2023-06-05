@@ -67,6 +67,16 @@ public class ProductRepositoryTest {
         System.out.println(productRepository.existsByProductName("Product4"));
     }
 
+    @Test
+    void countTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
 
+        System.out.println(productRepository.countByProductName("Product4"));
+    }
 
 }
