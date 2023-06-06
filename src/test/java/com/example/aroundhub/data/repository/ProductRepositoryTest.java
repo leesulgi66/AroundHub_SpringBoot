@@ -172,4 +172,15 @@ public class ProductRepositoryTest {
         System.out.println(productRepository.findByProductStockIsNotNull());
     }
 
+    @Test
+    void andTest(){
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.findTopByProductIdAndProductName("1", "Product1"));
+    }
 }
