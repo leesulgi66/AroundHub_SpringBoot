@@ -142,4 +142,21 @@ public class ProductRepositoryTest {
         System.out.println(productRepository.findByProductNameContaining("Product1"));
     }
 
+    @Test
+    void notTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundEntities = productRepository.findByProductIdNot("1");
+        for(ProductEntity productEntity : foundEntities) {
+            System.out.println(productEntity);
+        }
+
+        System.out.println(productRepository.findByProductIdIsNot("1"));
+    }
+
 }
