@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     long removeByProductId(String id);
 
     // 값 개수 제한
-    List<ProductEntity> findFirstByProductName(String name);
+    List<ProductEntity> findFirst5ByProductName(String name);
     List<ProductEntity> findTop3ByProductName(String name);
 
     /* 쿼리 메소드의 조건자 키워드*/
