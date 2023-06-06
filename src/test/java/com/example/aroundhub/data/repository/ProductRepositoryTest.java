@@ -196,5 +196,7 @@ public class ProductRepositoryTest {
             System.out.println(productEntity.toString());
         }
         System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.findByProductNameContaining("Product1"));
     }
 }
