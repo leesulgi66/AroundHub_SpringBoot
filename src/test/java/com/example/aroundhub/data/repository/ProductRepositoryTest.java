@@ -159,4 +159,17 @@ public class ProductRepositoryTest {
         System.out.println(productRepository.findByProductIdIsNot("1"));
     }
 
+    @Test
+    void nullTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.findByProductStockIsNull());
+        System.out.println(productRepository.findByProductStockIsNotNull());
+    }
+
 }
