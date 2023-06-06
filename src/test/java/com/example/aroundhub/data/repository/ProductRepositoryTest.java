@@ -92,4 +92,26 @@ public class ProductRepositoryTest {
         System.out.println("After : "+productRepository.count());
     }
 
+    @Test
+    void topTest() {
+        productRepository.save(getProduct("100", 123, 1500, 5000));
+        productRepository.save(getProduct("101", 123, 2500, 5000));
+        productRepository.save(getProduct("102", 123, 3500, 5000));
+        productRepository.save(getProduct("103", 123, 4500, 5000));
+        productRepository.save(getProduct("104", 123, 1000, 5000));
+        productRepository.save(getProduct("105", 123, 2000, 5000));
+        productRepository.save(getProduct("106", 123, 3000, 5000));
+        productRepository.save(getProduct("107", 123, 4000, 5000));
+
+        List<ProductEntity> foundEntities = productRepository.findFirst5ByProductName("Product123"); // 별도의 정렬 쿼리가 없다면 기본적으로 아이디로 정렬된다.
+        for(ProductEntity productEntity : foundEntities) {
+            System.out.println(productEntity.toString());
+        }
+
+        List<ProductEntity> foundEntities2 = productRepository.findTop3ByProductName("Product123");
+        for(ProductEntity productEntity : foundEntities2) {
+            System.out.println(productEntity.toString());
+        }
+    }
+
 }
