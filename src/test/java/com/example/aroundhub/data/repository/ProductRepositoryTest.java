@@ -130,4 +130,16 @@ public class ProductRepositoryTest {
 
     }
 
+    @Test
+    void containTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.findByProductNameContaining("Product1"));
+    }
+
 }
