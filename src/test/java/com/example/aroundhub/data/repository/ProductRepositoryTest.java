@@ -183,4 +183,20 @@ public class ProductRepositoryTest {
 
         System.out.println(productRepository.findTopByProductIdAndProductName("1", "Product1"));
     }
+
+    @Test
+    void greaterTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> productEntities = productRepository.findByProductPriceGreaterThan(5000);
+
+        for(ProductEntity productEntity : productEntities) {
+            System.out.println(productEntity);
+        }
+    }
 }
