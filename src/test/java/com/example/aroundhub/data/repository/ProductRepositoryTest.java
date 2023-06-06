@@ -114,4 +114,20 @@ public class ProductRepositoryTest {
         }
     }
 
+    /* 조건자 키워드 테스트 */
+
+    @Test
+    void isEqualsTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        System.out.println(productRepository.findByProductIdIs("1"));
+        System.out.println(productRepository.findByProductIdEquals("1"));
+
+    }
+
 }
