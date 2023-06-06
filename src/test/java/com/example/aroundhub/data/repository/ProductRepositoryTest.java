@@ -131,18 +131,6 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void containTest() {
-        List<ProductEntity> foundAll = productRepository.findAll();
-        System.out.println("====↓↓ Test Data ↓↓====");
-        for(ProductEntity productEntity : foundAll) {
-            System.out.println(productEntity.toString());
-        }
-        System.out.println("====↑↑ Test Data ↑↑====");
-
-        System.out.println(productRepository.findByProductNameContaining("Product1"));
-    }
-
-    @Test
     void notTest() {
         List<ProductEntity> foundAll = productRepository.findAll();
         System.out.println("====↓↓ Test Data ↓↓====");
@@ -198,5 +186,15 @@ public class ProductRepositoryTest {
         for(ProductEntity productEntity : productEntities) {
             System.out.println(productEntity);
         }
+    }
+
+    @Test
+    void containTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
     }
 }
