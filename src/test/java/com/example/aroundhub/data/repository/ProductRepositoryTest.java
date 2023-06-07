@@ -19,14 +19,14 @@ public class ProductRepositoryTest {
     void GenerateData() {
         int count = 1;
         productRepository.save(getProduct(Integer.toString(count), count++, 2000, 3000));
-        productRepository.save(getProduct(Integer.toString(count), count++, 3000, 9000));
-        productRepository.save(getProduct(Integer.toString(--count), count = count + 2, 1500, 200));
-        productRepository.save(getProduct(Integer.toString(count), count++, 4000, 5000));
+        productRepository.save(getProduct(Integer.toString(count), count++, 1500, 200));
+        productRepository.save(getProduct(Integer.toString(--count), count = count + 2, 4000, 3000));
+        productRepository.save(getProduct(Integer.toString(count), count++, 4000, 3000));
         productRepository.save(getProduct(Integer.toString(count), count++, 10000, 1500));
         productRepository.save(getProduct(Integer.toString(count), count++, 10000, 1000));
         productRepository.save(getProduct(Integer.toString(count), count++, 500, 10000));
         productRepository.save(getProduct(Integer.toString(count), count++, 8500, 3500));
-        productRepository.save(getProduct(Integer.toString(count), count++, 7200, 2000));
+        productRepository.save(getProduct(Integer.toString(count), count++, 1000, 2000));
         productRepository.save(getProduct(Integer.toString(count), count++, 5100, 1700));
     }
 
@@ -220,6 +220,22 @@ public class ProductRepositoryTest {
 
         foundProducts = productRepository.findByProductNameContainingOrderByProductStockDesc("Product");
         System.out.println("--------------- sort stock desc ----------------");
+        for(ProductEntity product : foundProducts) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    void multiOrderByTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductNameContainingOrderByProductPriceAscProductStockDesc("Product");
+        System.out.println("--------------- sort price & stock ----------------");
         for(ProductEntity product : foundProducts) {
             System.out.println(product);
         }
