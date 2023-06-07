@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 
@@ -20,7 +21,7 @@ public class ProductRepositoryTest {
         int count = 1;
         productRepository.save(getProduct(Integer.toString(count), count++, 2000, 3000));
         productRepository.save(getProduct(Integer.toString(count), count++, 1500, 200));
-        productRepository.save(getProduct(Integer.toString(--count), count = count + 2, 4000, 3000));
+        productRepository.save(getProduct(Integer.toString(--count), count = count + 2, 1500, 200));
         productRepository.save(getProduct(Integer.toString(count), count++, 4000, 3000));
         productRepository.save(getProduct(Integer.toString(count), count++, 10000, 1500));
         productRepository.save(getProduct(Integer.toString(count), count++, 10000, 1000));
@@ -236,6 +237,28 @@ public class ProductRepositoryTest {
 
         List<ProductEntity> foundProducts = productRepository.findByProductNameContainingOrderByProductPriceAscProductStockDesc("Product");
         System.out.println("--------------- sort price & stock ----------------");
+        for(ProductEntity product : foundProducts) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    void orderByWithParameterTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductNameContaining("Product", Sort.by(Sort.Order.asc("ProductPrice")));
+        System.out.println("--------------- order by with parameter(product, price) ----------------");
+        for(ProductEntity product : foundProducts) {
+            System.out.println(product);
+        }
+
+        foundProducts = productRepository.findByProductNameContaining("Product", Sort.by(Sort.Order.asc("ProductPrice"), Sort.Order.asc("ProductStock")));
+        System.out.println("--------------- order by with parameter(price, stock) ----------------");
         for(ProductEntity product : foundProducts) {
             System.out.println(product);
         }
