@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
@@ -259,6 +260,28 @@ public class ProductRepositoryTest {
 
         foundProducts = productRepository.findByProductNameContaining("Product", Sort.by(Sort.Order.asc("ProductPrice"), Sort.Order.asc("ProductStock")));
         System.out.println("--------------- order by with parameter(price, stock) ----------------");
+        for(ProductEntity product : foundProducts) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    void pagingTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductPriceGreaterThan(200, PageRequest.of(0, 2));
+        System.out.println("--------------- paging(0, 2) ----------------");
+        for(ProductEntity product : foundProducts) {
+            System.out.println(product);
+        }
+
+        foundProducts = productRepository.findByProductPriceGreaterThan(200, PageRequest.of(4, 2));
+        System.out.println("--------------- paging(4, 2) ----------------");
         for(ProductEntity product : foundProducts) {
             System.out.println(product);
         }
