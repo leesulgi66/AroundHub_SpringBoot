@@ -80,6 +80,9 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     List<ProductEntity> findByProductPriceBasisNativeQuery();
 
     @Query("SELECT p FROM ProductEntity p WHERE p.productPrice > ?1")
+    List<ProductEntity> findByProductPriceWithParameter(Integer price);
+
+    @Query("SELECT p FROM ProductEntity p WHERE p.productPrice > :price")
     List<ProductEntity> findByProductPriceWithParameterNaming(Integer price);
 
     @Query("SELECT p FROM ProductEntity p WHERE p.productPrice > :pri")
