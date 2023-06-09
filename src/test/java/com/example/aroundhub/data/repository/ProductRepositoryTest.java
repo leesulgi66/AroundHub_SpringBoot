@@ -361,4 +361,19 @@ public class ProductRepositoryTest {
             System.out.println(productEntity);
         }
     }
+
+    @Test
+    public void nativeQueryPagingTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductPriceWithParameterPaging(2000, PageRequest.of(2,2)); // 값이 하나만 나와야 한다.(5개의 값중 2씩 끊어지고 마지막 페이지의 1개값)
+        for(ProductEntity productEntity : foundProducts) {
+            System.out.println(productEntity);
+        }
+    }
 }
