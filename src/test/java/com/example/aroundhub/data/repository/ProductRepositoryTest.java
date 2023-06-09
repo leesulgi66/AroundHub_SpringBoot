@@ -346,4 +346,19 @@ public class ProductRepositoryTest {
             System.out.println(productEntity);
         }
     }
+
+    @Test
+    public void parameterNamingQueryTest2() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductPriceWithParameterNaming2(2000);
+        for(ProductEntity productEntity : foundProducts) {
+            System.out.println(productEntity);
+        }
+    }
 }
