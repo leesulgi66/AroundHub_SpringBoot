@@ -301,4 +301,19 @@ public class ProductRepositoryTest {
             System.out.println(productEntity);
         }
     }
+
+    @Test
+    public void nativeQueryTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for(ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProducts = productRepository.findByProductPriceBasisNativeQuery();
+        for(ProductEntity productEntity : foundProducts) {
+            System.out.println(productEntity);
+        }
+    }
 }
