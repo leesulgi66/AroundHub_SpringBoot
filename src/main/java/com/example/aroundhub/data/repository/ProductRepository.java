@@ -88,7 +88,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     @Query("SELECT p FROM ProductEntity p WHERE p.productPrice > :pri")
     List<ProductEntity> findByProductPriceWithParameterNaming2(@Param("pri") Integer price);
 
-    @Query(value = "SELECT * FROM product WHERE productPrice > : price",
+    @Query(value = "SELECT * FROM product WHERE product_price > :price",
     countQuery = "SELECT count(*) FROM product WHERE price > ?1",
     nativeQuery = true)
     List<ProductEntity> findByProductPriceWithParameterPaging(Integer price, Pageable pageable);
