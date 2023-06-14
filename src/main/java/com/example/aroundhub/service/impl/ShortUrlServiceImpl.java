@@ -4,9 +4,12 @@ import com.example.aroundhub.data.dao.ShortUrlDAO;
 import com.example.aroundhub.data.dto.NaverUriDto;
 import com.example.aroundhub.data.dto.ShortUrlResponseDto;
 import com.example.aroundhub.data.entity.ShortUrl;
+import com.example.aroundhub.data.repository.ShortUrlRedisRepository;
 import com.example.aroundhub.service.ShortUrlService;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +28,12 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ShortUrlServiceImpl.class);
     private final ShortUrlDAO shortUrlDAO;
+    private final ShortUrlRedisRepository shortUrlRedisRepository;
 
     @Autowired
-    public ShortUrlServiceImpl(ShortUrlDAO shortUrlDAO) {
+    public ShortUrlServiceImpl(ShortUrlDAO shortUrlDAO, ShortUrlRedisRepository shortUrlRedisRepository) {
         this.shortUrlDAO = shortUrlDAO;
+        this.shortUrlRedisRepository = shortUrlRedisRepository;
     }
 
     @Override
@@ -36,6 +41,17 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         String originalUrl) {
 
         LOGGER.info("[getShortUrl] request data : {}", originalUrl);
+
+        // Cache Logic
+        Optional<ShortUrlResponseDto> foundResponseDto = shortUrlRedisRepository.findById(originalUrl);
+        if(foundResponseDto.isPresent()){
+            LOGGER.info("[getShortUrl] Cache Data is existed.");
+            return foundResponseDto.get();
+        }else {
+            LOGGER.info("[getShortUrl] Cache Data dose not existed.");
+        }
+
+
         ShortUrl getShortUrl = shortUrlDAO.getShortUrl(originalUrl);
 
         String orgUrl;
@@ -81,6 +97,9 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         shortUrlDAO.saveShortUrl(shortUrlEntity);
 
         ShortUrlResponseDto shortUrlResponseDto = new ShortUrlResponseDto(orgUrl, shortUrl);
+
+        // Cache Logic
+        shortUrlRedisRepository.save(shortUrlResponseDto);
 
         LOGGER.info("[generateShortUrl] Response DTO : {}", shortUrlResponseDto);
         return shortUrlResponseDto;
